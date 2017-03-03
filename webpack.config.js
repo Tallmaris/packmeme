@@ -7,10 +7,10 @@ module.exports = {
   context: __dirname,
   devtool: debug ? "inline-sourcemap" : null,
   entry: {
-    app: "./js/index.js"
+    app: "./app/entry.js"
   },
   output: {
-    path: __dirname + "/js",
+    path: __dirname + "/build",
     filename: "[name].min.js"
   },
   module: {
@@ -40,15 +40,12 @@ module.exports = {
 		]
 	},
   resolve: {
-		extensions: [".web.coffee", ".web.js", ".coffee", ".js", ".css", ".html"],
-    // alias: {
-    //    handlebars: 'handlebars/dist/handlebars.min.js'
-    // }
+		extensions: [".web.coffee", ".web.js", ".coffee", ".js", ".css", ".html"]
 	},
   plugins: debug ? [
-    new HtmlWebpackPlugin({ title: 'Webpack App' }),
+    //new HtmlWebpackPlugin({ title: 'Webpack App' }),
     new ExtractTextPlugin({
-      filename: "allstyles.css",
+      filename: "styles.min.css",
       ignoreOrder: true
     })
   ] : [
