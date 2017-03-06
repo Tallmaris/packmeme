@@ -1,12 +1,10 @@
-var debug = process.env.NODE_ENV !== "production";
 var webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 
 module.exports = {
   context: __dirname,
-  devtool: debug ? "inline-sourcemap" : null,
+  devtool: "inline-sourcemap",
   entry: {
     app: "./app/entry.jsx",
     vendor: 'babel-polyfill'
@@ -46,16 +44,11 @@ module.exports = {
   resolve: {
 		extensions: [".web.coffee", ".web.js", ".coffee", ".js", ".jsx", ".css", ".html"]
 	},
-  plugins: debug ? [
-    new WebpackCleanupPlugin(),
+  plugins: [
     new HtmlWebpackPlugin({ title: 'Videomeme', template: 'app/index.hbs' }),
     new ExtractTextPlugin({
       filename: "styles.min.css",
       ignoreOrder: true
     })
-  ] : [
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
-  ],
+  ]
 };
