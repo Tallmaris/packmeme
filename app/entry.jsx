@@ -1,8 +1,9 @@
 import VideoView from './views/video'
 import VideoModel from './models/video'
 import VideoReact from './views/videoreact'
+import { StyleRoot } from 'radium'
 import React from 'react'
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom'
 
 window.onload = function() {
   var model = new VideoModel({id:2});
@@ -10,5 +11,9 @@ window.onload = function() {
   // view.render();
 
   //var reactView = new VideoReact({model: new VideoModel({id:2})});
-  ReactDOM.render(<VideoReact model={model} />, document.getElementById('reactmain'));
+  ReactDOM.render(
+    <StyleRoot>
+      <VideoReact model={model} />
+    </StyleRoot>
+    , document.getElementById('reactmain'));
 }

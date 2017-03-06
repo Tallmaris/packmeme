@@ -8,7 +8,8 @@ module.exports = {
   context: __dirname,
   devtool: debug ? "inline-sourcemap" : null,
   entry: {
-    app: "./app/entry.jsx"
+    app: "./app/entry.jsx",
+    vendor: 'babel-polyfill'
   },
   output: {
     path: __dirname + "/build",
@@ -31,7 +32,7 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /(node_modules)/,
-        use: { loader: "babel-loader", options: { presets: ["es2015","react"] } }
+        use: { loader: "babel-loader", options: { presets: ["es2015","react"], plugins: ['transform-runtime'] } }
       },
       { test: /\.html$/, loader: "html-loader" },
       {

@@ -1,6 +1,7 @@
 import React from 'react'
-import style from '../templates/videostyles.css'
-import Koala from '../assets/images/Koala.jpg'
+import Radium from 'radium'
+import style from '../templates/videostyles.js'
+//import Koala from '../assets/images/Koala.jpg'
 import { Model } from 'backbone'
 
 class VideoReact extends React.Component {
@@ -10,8 +11,8 @@ class VideoReact extends React.Component {
 
   render() {
     return <div>
-      <h2 className={style.big}>{this.props.model.get('title')}</h2>
-      <img style={{width: 300}} src={Koala} />
+      <h2 style={style}>{this.props.model.get('title')}</h2>
+      <img style={{width: 300}} src={require('../assets/images/Koala.jpg')} />
     </div>
   }
 }
@@ -20,4 +21,4 @@ VideoReact.propTypes = {
   model: React.PropTypes.instanceOf(Model).isRequired
 }
 
-export default VideoReact
+export default Radium(VideoReact)
