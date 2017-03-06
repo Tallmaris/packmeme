@@ -1,13 +1,14 @@
 var debug = process.env.NODE_ENV !== "production";
 var webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 
 module.exports = {
   context: __dirname,
   devtool: debug ? "inline-sourcemap" : null,
   entry: {
-    app: "./app/entry.js"
+    app: "./app/entry.jsx"
   },
   output: {
     path: __dirname + "/build",
@@ -24,20 +25,25 @@ module.exports = {
         })
       },
       { test: /\.hbs$/, loader: "handlebars-loader" },
-      { test: /\.js$/, loader: "babel-loader" },
+      {
+        test: /\.jsx?$/,
+        exclude: /(node_modules)/,
+        use: { loader: "babel-loader", options: { presets: ["es2015","react"] } }
+      },
       { test: /\.html$/, loader: "html-loader" },
       {
         test: /\.jpg$/,
         use: {
-          loader: "url-loader", options: { limit: 100 }
+          loader: "url-loader"//, options: { limit: 100 }
         }
       }
 		]
 	},
   resolve: {
-		extensions: [".web.coffee", ".web.js", ".coffee", ".js", ".css", ".html"]
+		extensions: [".web.coffee", ".web.js", ".coffee", ".js", ".jsx", ".css", ".html"]
 	},
   plugins: debug ? [
+    new WebpackCleanupPlugin(),
     new HtmlWebpackPlugin({ title: 'Videomeme', template: 'app/index.hbs' }),
     new ExtractTextPlugin({
       filename: "styles.min.css",
