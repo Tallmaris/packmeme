@@ -15,10 +15,7 @@ module.exports = {
   },
   module: {
 		rules: [
-			{
-        test: /\.coffee$/,
-        loader: "coffee-loader"
-      },
+			{ test: /\.coffee$/, loader: "coffee-loader" },
       {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
@@ -26,16 +23,14 @@ module.exports = {
           use: { loader: "css-loader", options: { modules: true, importLoaders: 1, localIdentName: '[name]__[local]___[hash:base64:5]' } }
         })
       },
+      { test: /\.hbs$/, loader: "handlebars-loader" },
+      { test: /\.js$/, loader: "babel-loader" },
+      { test: /\.html$/, loader: "html-loader" },
       {
-        test: /\.hbs$/, loader: "handlebars-loader"
-      },
-      {
-        test: /\.js$/,
-        loader: "babel-loader"
-      },
-      {
-        test: /\.html$/,
-        loader: "html-loader"
+        test: /\.jpg$/,
+        use: {
+          loader: "url-loader", options: { limit: 100 }
+        }
       }
 		]
 	},
@@ -43,7 +38,7 @@ module.exports = {
 		extensions: [".web.coffee", ".web.js", ".coffee", ".js", ".css", ".html"]
 	},
   plugins: debug ? [
-    //new HtmlWebpackPlugin({ title: 'Webpack App' }),
+    new HtmlWebpackPlugin({ title: 'Videomeme', template: 'app/index.hbs' }),
     new ExtractTextPlugin({
       filename: "styles.min.css",
       ignoreOrder: true

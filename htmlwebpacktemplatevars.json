@@ -1,0 +1,42 @@
+<!--// 'compilation',
+// 'webpack',
+// 'webpackConfig',
+// 'htmlWebpackPlugin'-->
+{
+    "htmlWebpackPlugin": {
+        "files": {
+            "publicPath": "",
+            "chunks": {
+                "app": {
+                    "size": 427125,
+                    "entry": "app.min.js",
+                    "hash": "b74352f93d84c1ff9d92",
+                    "css": [
+                        "styles.min.css"
+                    ]
+                }
+            },
+            "js": [
+                "app.min.js"
+            ],
+            "css": [
+                "styles.min.css"
+            ]
+        },
+        "options": {
+            "template": "C:\\Development\\videoreact\\packmeme\\node_modules\\html-webpack-plugin\\lib\\loader.js!C:\\Development\\videoreact\\packmeme\\app\\index.html",
+            "filename": "index.html",
+            "hash": false,
+            "inject": true,
+            "compile": true,
+            "favicon": false,
+            "minify": false,
+            "cache": true,
+            "showErrors": true,
+            "chunks": "all",
+            "excludeChunks": [],
+            "title": "Videomeme",
+            "xhtml": false
+        }
+    }
+}

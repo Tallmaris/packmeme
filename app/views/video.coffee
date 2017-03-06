@@ -2,6 +2,7 @@ import { View } from 'backbone'
 import VideoModel from '../models/video'
 import Template from '../templates/video.hbs'
 import Styles from '../templates/videostyles.css'
+import Koala from '../assets/images/Koala.jpg'
 
 class VideoView extends View
   template: Template
@@ -10,8 +11,8 @@ class VideoView extends View
   render: () ->
     @$el.html @template({
       styles: Styles
+      assets: Koala
       model: @model.toJSON()})
-    console.log('done')
     @
 
 export default VideoView
