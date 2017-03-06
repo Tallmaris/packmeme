@@ -6,8 +6,8 @@ import ReactDOM from 'react-dom';
 
 window.onload = function() {
   var model = new VideoModel({id:2});
-  var view = new VideoView({model: model});
-  view.render();
+  // var view = new VideoView({model: model});
+  // view.render();
 
   //var reactView = new VideoReact({model: new VideoModel({id:2})});
   ReactDOM.render(<VideoReact model={model} />, document.getElementById('reactmain'));

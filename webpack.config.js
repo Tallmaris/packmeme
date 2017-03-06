@@ -21,7 +21,10 @@ module.exports = {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
           fallback: "style-loader",
-          use: { loader: "css-loader", options: { modules: true, importLoaders: 1, localIdentName: '[name]__[local]___[hash:base64:5]' } }
+          use: [
+            { loader: "css-loader", options: { modules: true, importLoaders: 1, localIdentName: '[name]__[local]___[hash:base64:5]' } },
+            { loader: 'postcss-loader', options: { plugins: function () { return [require('precss'),require('autoprefixer')];}} }
+          ]
         })
       },
       { test: /\.hbs$/, loader: "handlebars-loader" },

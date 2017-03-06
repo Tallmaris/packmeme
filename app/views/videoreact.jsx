@@ -1,6 +1,7 @@
 import React from 'react'
 import style from '../templates/videostyles.css'
 import Koala from '../assets/images/Koala.jpg'
+import { Model } from 'backbone'
 
 class VideoReact extends React.Component {
   constructor(props) {
@@ -13,6 +14,10 @@ class VideoReact extends React.Component {
       <img style={{width: 300}} src={Koala} />
     </div>
   }
+}
+
+VideoReact.propTypes = {
+  model: React.PropTypes.instanceOf(Model).isRequired
 }
 
 export default VideoReact
