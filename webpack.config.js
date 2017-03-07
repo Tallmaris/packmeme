@@ -18,13 +18,28 @@ module.exports = {
 			{ test: /\.coffee$/, loader: "coffee-loader" },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: [
-            { loader: "css-loader", options: { modules: true, importLoaders: 1, localIdentName: '[name]__[local]___[hash:base64:5]' } },
-            { loader: 'postcss-loader', options: { plugins: function () { return [require('precss'),require('autoprefixer')];}} }
-          ]
-        })
+        use: 'raw-loader'
+        // ExtractTextPlugin.extract({
+        //   fallback: "style-loader",
+        //   use: [
+        //     { loader: "css-loader", options: { modules: true, importLoaders: 1, localIdentName: '[name]__[local]___[hash:base64:5]' } },
+        //     { loader: 'postcss-loader', options: { plugins: function () { return [require('precss'),require('autoprefixer')];}} }
+        //   ]
+        // })
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          { loader: 'raw-loader' },
+          { loader: 'sass-loader' }
+        ]
+        // ExtractTextPlugin.extract({
+        //   fallback: "style-loader",
+        //   use: [
+        //     { loader: "css-loader", options: { sourceMap: true } },
+        //     { loader: 'sass-loader', options: { sourceMap: true } }
+        //   ]
+        // })
       },
       { test: /\.hbs$/, loader: "handlebars-loader" },
       {
@@ -42,7 +57,7 @@ module.exports = {
 		]
 	},
   resolve: {
-		extensions: [".web.coffee", ".web.js", ".coffee", ".js", ".jsx", ".css", ".html"]
+		extensions: [".web.coffee", ".web.js", ".coffee", ".js", ".jsx", ".css", ".scss", ".html"]
 	},
   plugins: [
     new HtmlWebpackPlugin({ title: 'Videomeme', template: 'app/index.hbs' }),
